@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HangmanGame.MainPage">
+
+    <Grid RowDefinitions=".6*,.4*">
+        
+        <VerticalStackLayout Spacing="10">
+            <Label FontAttributes="Bold" HorizontalOptions="Center" Text="{Binding GameStatus}" />
+            <Image Source="{Binding CurrentImage}" HeightRequest="200"/>
+            <Label
+                FontSize="40"
+                HorizontalOptions="Center"
+                Text="{Binding Spotlight} "
+                VerticalOptions="Center" />
+            <Label
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Message}" />
+            <Button
+                HorizontalOptions="Center"
+                Text="Reset"
+                WidthRequest="100" 
+                Clicked="Reset_Clicked"/>
+        </VerticalStackLayout>
+
+        <FlexLayout Grid.Row="1"  Wrap="Wrap" JustifyContent="SpaceEvenly" x:Name="LettersContainer"
+                    BindableLayout.ItemsSource="{Binding Letters}">       <!-- Letters είναι η Λίστα με τα γράμματα της ΑΒ. -->
+
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Button                        
+                        HeightRequest="50"
+                        Text="{Binding .}"   
+                        WidthRequest="50" 
+                        Clicked="Button_Clicked"/>
+                </DataTemplate>
+                <!--The perpose of dot is to access the value directly from the collection.-->
+            </BindableLayout.ItemTemplate>
+
+            <Button HeightRequest="50" WidthRequest="50" BackgroundColor="Navy" Text="A"/>
+
+        </FlexLayout>
+        
+    </Grid>
+
+</ContentPage>
+
